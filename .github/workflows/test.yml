@@ -1,14 +1,7 @@
-
-# test.yml
-
-# Define the workflow name:
-# The workflow name helps us identify the workflow in the GitHub Actions tab.
 name: Run Django Tests
-# Define the event that triggers that workflow:
 on:
   push:
     branches: [master]
-# 
 jobs:
   test-django-app:
     runs-on: ubuntu-latest

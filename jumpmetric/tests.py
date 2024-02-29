@@ -19,7 +19,7 @@ class TestTrial(TestCase):
             "filename" , "filenametest"
         ]
         for fullname in fullnames:
-            Trial.objects.create(fullname=fullname, height=fullname, weight=fullname, age=fullname, email=fullname, occupy=fullname, type_of_trial=fullname, drop_jump_height=fullname, filename=fullname)
+            Trial.objects.create(fullname=fullname, fullname=height, fullname=weight, fullname=age, fullname=email, fullname=occupy, fullname=type_of_trial, fullname=drop_jump_height, fullname=filename)
 
     # def test_list_todo(self):
     #     c = Client()

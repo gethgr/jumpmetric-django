@@ -6,7 +6,7 @@ from jumpmetric.models import Trial
 
 
 class TestTrial(TestCase):
-    def setUp(self) -> None:
+    def test_setUp(self) -> None:
         tasks = [
             "fullname", "fullnametest",
             # "height", "190",

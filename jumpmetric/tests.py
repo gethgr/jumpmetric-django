@@ -6,12 +6,12 @@ from jumpmetric.models import Trial
 
 
 class TestTrial(TestCase):
-    def test_setUp(self) -> None:
-        fullnames = [
-             "190", "89", "29", "test@test.test", "studentTest", "CMJ", "10", "filenameTEst"
-        ]
-        for item in fullnames:
-            Trial.objects.create(fullname=item, height=item, weight=item, age=item, email=item, occupy=item, type_of_trial=item, drop_jump_height=item, filename=item)
+    # def test_setUp(self) -> None:
+    #     fullnames = [
+    #          "190", "89", "29", "test@test.test", "studentTest", "CMJ", "10", "filenameTEst"
+    #     ]
+    #     for item in fullnames:
+    #         Trial.objects.create(fullname=item, height=item, weight=item, age=item, email=item, occupy=item, type_of_trial=item, drop_jump_height=item, filename=item)
 
     # def test_list_todo(self):
     #     c = Client()
@@ -20,15 +20,23 @@ class TestTrial(TestCase):
     #     count = len(response.json().get("data"))
     #     self.assertEqual(count, 2)
 
-    # def test_create_todo(self):
-    #     c = Client()
-    #     response = c.post("/create/", {
-    #         "fullname": "fullnametest"
-    #     })
-    #     self.assertEqual(response.status_code, 201)
-    #     self.assertEqual(
-    #         response.json().get("trial"), "fullnametest"
-    #     )
+    def test_create_todo(self):
+        c = Client()
+        response = c.post("/create/", {
+            "fullname": "fullnametest",
+            "height": "190",
+            "weight": "89",
+            "age" : "29",
+            "email" : "test@test.test",
+            "occupy" : "studenttest", 
+            "type_of_trial" : "CMJ",
+            "drop_jump_height" : "10",
+            "filename" : "filenametest"
+        })
+        self.assertEqual(response.status_code, 201)
+        self.assertEqual(
+            response.json().get("trial"), "fullnametest"
+        )
 
     # def test_retrieve_todo(self):
     #     c = Client()

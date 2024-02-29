@@ -19,7 +19,7 @@ class TestTrial(TestCase):
             # "filename" , "filenametest"
         ]
         for task in tasks:
-            Trial.objects.create(fullname=fullname)
+            Trial.objects.create(task=task)
 
     # def test_list_todo(self):
     #     c = Client()

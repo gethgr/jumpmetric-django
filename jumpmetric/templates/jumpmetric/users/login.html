@@ -1,0 +1,25 @@
+{% extends "frontendbase.html" %}
+{% block page_content %}
+{% load static %}
+{% include "frontendmenu.html" %}
+
+<div class="container" style="text-align: justify; padding-top:100px">
+
+    <h4 style="text-align: center;">Trivia Login In Form:</h4>
+    <center>
+    <form method="POST" style="border: 1px solid black; margin: 4%; padding:10%; border-radius:1%;">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        {{ form.as_p}}
+      </fieldset>
+     <center>
+      <button style="background: black; font-size: 2rem; padding:1%;" class="btn btn-outline-info" type="submit"><span class="glyphicon glyphicon-log-in"></span>   login</button>
+    </center>
+    <br/>
+    <sub style="text-align: left;"><a href="{% url 'signup' %}" style="text-decoration: none; color: blue; padding:2%; cursor:pointer; margin-right:2%;">don't have account,sign up</a></sub>
+    </form>
+  </center>
+   </div>
+
+
+{% endblock page_content %}

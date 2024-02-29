@@ -1,0 +1,92 @@
+{% extends "frontendbase.html" %}
+{% block page_content %}
+{% load static %}
+{% include "frontendmenu.html" %}
+
+<div class="container" style="padding: 150px 0px 150px 0px">
+    {% block start %}
+    {% if user.is_authenticated %}
+    <h2>welcome {{user.username}}!</h2>
+    {% else %}
+    <center><h1>log in, plz . . .</h1></center>
+    {% endif %}
+    {% endblock %}
+    <br>
+    <h1>Users List Table:</h1>
+    <br>
+    <table id="example" class="table" style="width:100%">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>USERNAME</th>
+                <th>EMAIL</th>
+                <th>LASTNAME</th>
+                <th>FIRSTNAME</th>
+                <th>DATE JOINED</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>{% for item in list_of_users %}
+                <td>{{item.id}}</td>
+                <td>{{item.username}}</td>
+                <td>Edi{{item.username}}nburgh</td>
+                <td>{{item.last_name}}</td>
+                <td>2{{item.first_name}}</td>
+                <td>{{item.date_joined}}</td>
+            </tr>{% endfor %}
+            
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>ID</th>
+                <th>USERNAME</th>
+                <th>EMAIL</th>
+                <th>LASTNAME</th>
+                <th>FIRSTNAME</th>
+                <th>DATE JOINED</th>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+</div>
+    </header>
+
+<script>
+new DataTable('#example', {
+    initComplete: function () {
+        this.api()
+            .columns()
+            .every(function () {
+                let column = this;
+ 
+                // Create select element
+                let select = document.createElement('select');
+                select.add(new Option(''));
+                column.footer().replaceChildren(select);
+ 
+                // Apply listener for user change in value
+                select.addEventListener('change', function () {
+                    var val = DataTable.util.escapeRegex(select.value);
+ 
+                    column
+                        .search(val ? '^' + val + '$' : '', true, false)
+                        .draw();
+                });
+ 
+                // Add list of options
+                column
+                    .data()
+                    .unique()
+                    .sort()
+                    .each(function (d, j) {
+                        select.add(new Option(d));
+                    });
+            });
+    }
+});
+</script>
+ 
+{%include 'footer.html'%}       
+{% endblock page_content %}

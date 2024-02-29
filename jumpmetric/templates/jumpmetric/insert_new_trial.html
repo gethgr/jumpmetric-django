@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block page_content %}
+<br>
+<h2>Insert new trial form:</h2>
+<form method="post" enctype="multipart/form-data" >
+{% csrf_token %}
+{{ form|as_crispy_errors }}
+<!-- Here is the form to insert new trial-->
+
+
+<div class="row" id="form">
+    <div class="col-3">
+    {{ form.fullname|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.height|as_crispy_field }}
+        </div>
+    <div class="col-3">
+    {{ form.weight|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.age|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.email|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.occupy|as_crispy_field }}
+    </div>
+    <!--<input type="hidden" name="Valid" id="Valid" value="True">-->
+
+    
+
+    <div id="typeOfTrial" class="col-3"  name="typeOfTrial"  value="Choose">
+        {{ form.type_of_trial|as_crispy_field }}
+    </div>
+   
+    <div class="col-3" name="dropHeight" id="dropHeight" value="dj">
+        {{ form.drop_jump_height|as_crispy_field }}
+        
+    </div>
+    
+    <div class="col-3">
+        <strong>{{ form.trial_csv|as_crispy_field }}</strong>
+    </div>
+    
+</div>
+<br>
+<button type="submit" class="btn btn-success">Insert trial</button>
+
+</form>
+
+    
+
+<!-- After form sumbited the page prints a verified message (Thank you)-->
+<!-- {% if form.trial_csv %}
+print(form.trial_csv)
+{% endif %}
+{{ form.errors }} -->
+<br><br>
+
+{% if message %}
+<h3>{{message}}</h3>
+{% endif %}
+
+
+
+{% endblock page_content %}

@@ -1,0 +1,23 @@
+{% extends "frontendbase.html" %}
+{% block page_content %}
+{% load static %}
+{% include "frontendmenu.html" %}
+
+
+<div class="container" style="padding:50px">
+    <h4 style="padding:100px 0px 50px 0px">Jump Metric Registration Page</h4>
+
+    <h5>Registration form:</h5>
+    <br>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Signup</button>
+        <a href="{% url 'login' %}">Already have account?</a>
+        
+    </form>
+</div>
+
+{% endblock page_content %}
+
+    

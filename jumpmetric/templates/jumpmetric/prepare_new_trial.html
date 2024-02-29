@@ -1,0 +1,148 @@
+{% extends "base.html" %}
+{% load static %}
+{% block page_content %}
+
+<br>
+<h2>Prepare a trial file txt:</h2>
+<br>
+
+
+<form action=" " method="post"  class="post-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+
+{% if message %}
+{{message}}
+
+<title>CanvasJS Python Charts</title>
+<script>
+    window.onload = function () { 
+      var data = {{ datapoints|safe }};
+      var dataPoints = []
+ 
+      for(var i=0; i<data.length; i++) {
+        dataDate = data[i].Date
+        dataPoints.push({
+          //x: new Date(parseInt(dataDate.split("-")[2]),parseInt(dataDate.split("-")[1]),parseInt(dataDate.split("-")[0])), 
+          y: data[i]
+        });
+      }
+      
+      var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        title: {
+          text: "Python Chart with Data from CSV"
+        },
+        subtitles: [{
+          text: "BTC-USD"
+        }],
+        axisY: {
+          title: "Mass Sum",
+          //prefix: "$"
+        },
+        data: [{
+          type: "line",
+          //xValueType: "dateTime",
+          //yValueFormatString: "$#,##0.##",
+          dataPoints: dataPoints
+        }]
+      });
+      chart.render();
+    }
+</script>
+</head>
+<body>
+    <div id="chartContainer" style="height: 360px; width: 100%;"></div>
+    <!-- <script src="{% static 'canvasjs.min.js' %}"></script> -->
+    <script src="https://cdn.canvasjs.com/ga/canvasjs.min.js"></script>
+
+    <script src="https://cdn.canvasjs.com/ga/canvasjs.stock.min.js"></script>
+
+<!-- 
+<table>
+    <tr>
+      {% for col in df_raw_data.columns %}
+        <td>
+          {{col}}
+        </td>
+      {% endfor %}
+    </tr>
+      {% for index, row in df_raw_data.iterrows %}
+        <tr>
+          {% for cell in row %}
+            <td>
+              {{cell}}
+            </td>
+          {% endfor %}
+        </tr>
+      {% endfor %}
+  </table> -->
+
+<img src="data:image/png;base64,{{ chart }}" alt="" >
+<div class="container" style="padding-top:100px;">            
+    <h1>Questions List</h1> 
+    <br> <br>         
+        <!-- <table id="questionsTable" class="table" style="width:100%">
+            <thead>
+                <tr>
+                <th>Time</th>
+                <th>Mass_1</th>
+                <th>Mass_2</th>
+                <th>Mass_3</th>
+                <th>Mass_Sum</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{df_raw_data.Time | safe}}</td>
+                    <td>{{df_raw_data.Mass_1 | safe}}</td>
+                    <td>{{df_raw_data.Mass_2 | safe}}</td>
+                    <td>{{df_raw_data.Mass_3 | safe}}</td>
+                    <td>{{df_raw_data.first.Mass_Sum}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Type</th>
+                    <th>Difficulty</th>
+                    <th>Category</th>
+                    <th>Question</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div> -->
+    
+    {% include 'footer.html' %}
+    
+    <script>
+        new DataTable('#questionsTable', {
+        initComplete: function () {
+            this.api()
+                .columns()
+                .every(function () {
+                    let column = this;
+                    let title = column.footer().textContent;
+     
+                    // Create input element
+                    let input = document.createElement('input');
+                    input.placeholder = title;
+                    column.footer().replaceChildren(input);
+     
+                    // Event listener for user input
+                    input.addEventListener('keyup', () => {
+                        if (column.search() !== this.value) {
+                            column.search(input.value).draw();
+                        }
+                    });
+    
+                    
+                });
+        }
+    });
+    </script>
+{% endif %}
+{% endblock page_content %}
+

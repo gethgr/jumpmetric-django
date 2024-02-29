@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block page_content %}
+<br>
+
+<h2>Insert new trial form:</h2>
+<form method="post" action="" >
+{% csrf_token %}
+<div class="row">
+    <div class="col-3">
+    {{ form.fullname|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.height|as_crispy_field }}
+        </div>
+    <div class="col-3">
+    {{ form.weight|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.age|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.email|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.occupy|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.type_of_trial|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.drop_jump_height|as_crispy_field }}
+    </div>
+    <div class="col-3">
+        {{ form.trial_csv|as_crispy_field }}
+    </div>
+</div>
+
+<button type="submit" class="btn btn-success">Insert trial</button>
+</form>
+<br>
+
+<3>Thank you, new trial has inserted!!</3>
+
+
+
+{% endblock page_content %}
+

@@ -1,0 +1,22 @@
+{% extends "frontendbase.html" %}
+{% block page_content %}
+{% load static %}
+{% include "frontendmenu.html" %}
+
+<div class="container" style="text-align: justify; padding-top:100px">
+
+<p><h3>Welcome to the Jumps Metrics Data Analysis App.</h3><br>
+    In cooperation with the School of Physical Education and Sports Science of Athens.
+    <br><br>
+    <strong>Brief Description:</strong>
+    
+    Jump Metrics for the purpose of research of School of Physical Education and Sports Science of Athens. For this purpose a force platform by PLUX Biosignals has been used to test various jumps trials and collects the raw data of athletes.
+    <br><br>
+    The main scope of this research is to collect raw data, transform and processing them into usable data, calculate and measure various indicators and export final results to create useful conclusions depending of the needs. For this reason i choosed to use Streamlit App Framework to create a nice and clean web app let the users to navigate very easy into the functionalities.
+    <br><br>
+    At this point, i should mention that we check various jumps, specifically: Counter Jump, Drop Jump, Isometric, Squad Jump.
+    <br><br>
+    Navigate to the left menu sidebar to choose a page.</p>
+</div>
+
+{% endblock page_content %}

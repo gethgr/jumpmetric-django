@@ -7,7 +7,7 @@ from jumpmetric.models import Trial
 
 class TestTrial(TestCase):
     def test_setUp(self) -> None:
-        tasks = [
+        fullnames = [
             "fullname", "fullnametest",
             # "height", "190",
             # "weight", "89",
@@ -18,8 +18,8 @@ class TestTrial(TestCase):
             # "drop_jump_height" , "10",
             # "filename" , "filenametest"
         ]
-        for task in tasks:
-            Trial.objects.create(task=task)
+        for fullname in fullnames:
+            Trial.objects.create(fullname=fullname)
 
     # def test_list_todo(self):
     #     c = Client()

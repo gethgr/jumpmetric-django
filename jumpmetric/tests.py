@@ -8,7 +8,7 @@ from jumpmetric.models import Trial
 class TestTrial(TestCase):
     def test_setUp(self) -> None:
         fullnames = [
-            "fullname", "190", "89", "29", "test@test.test", "studentTest", "CMJ", "10", "filenameTEst"
+             "190", "89", "29", "test@test.test", "studentTest", "CMJ", "10", "filenameTEst"
         ]
         for item in fullnames:
             Trial.objects.create(fullname=item, height=item, weight=item, age=item, email=item, occupy=item, type_of_trial=item, drop_jump_height=item, filename=item)

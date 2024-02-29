@@ -9,14 +9,14 @@ class TestTrial(TestCase):
     def test_setUp(self) -> None:
         fullnames = [
             "fullname", "fullnametest",
-            # "height", "190",
-            # "weight", "89",
-            # "age" , "29",
-            # "email" , "test@test.test",
-            # "occupy" , "studenttest", 
-            # "type_of_trial" , "CMJ",
-            # "drop_jump_height" , "10",
-            # "filename" , "filenametest"
+            "height", "190",
+            "weight", "89",
+            "age" , "29",
+            "email" , "test@test.test",
+            "occupy" , "studenttest", 
+            "type_of_trial" , "CMJ",
+            "drop_jump_height" , "10",
+            "filename" , "filenametest"
         ]
         for fullname in fullnames:
             Trial.objects.create(fullname=fullname)
